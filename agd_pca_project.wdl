@@ -146,6 +146,8 @@ task ProjectPCA{
     String docker = "hkim298/plink_1.9_2.0:20230116_20230707"
   }
 
+  Int disk_size = ceil(size([pgen_file, pvar_file, psam_file], "GB")  * 2) + 20
+
   String pca_file = OUTNAME + ".genotype.pca.sscore"
 
   command {
