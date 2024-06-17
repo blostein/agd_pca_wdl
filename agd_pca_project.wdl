@@ -50,7 +50,7 @@ workflow VUMCGenotypePCA {
         pvar_file = pvar_file,
         psam_file = ReplaceICAIdWithGrid.output_psam,
         outputName = chromosome,
-        extractFile = variants_extract_file
+        variants_extract_file = variants_extract_file
     }
   }
 
