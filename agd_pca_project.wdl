@@ -107,7 +107,7 @@ task ExtractVariants{
     File pvar_file
     File psam_file 
 
-    String chormosome
+    String chromosome
 
     File variants_extract_file
 
