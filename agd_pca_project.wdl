@@ -113,9 +113,9 @@ task ExtractVariants{
 
   command {
     plink2 \
-      --pgen ~{source_pgen} \
-      --pvar ~{source_pvar} \
-      --psam ~{source_psam} \
+      --pgen ~{pgen_file} \
+      --pvar ~{pvar_file} \
+      --psam ~{psam_file} \
       --extract ~{variants_extract_file} \
       --make-pfile \
       --out ~{outputName}
