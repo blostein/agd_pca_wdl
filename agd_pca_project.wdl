@@ -107,11 +107,20 @@ task ExtractVariants{
     File pvar_file
     File psam_file 
 
-    String outputName
+    String chormosome
+
     File variants_extract_file
+
+    Int memory_gb
 
     String docker = "hkim298/plink_1.9_2.0:20230116_20230707"
   }
+
+  Int disk_size = ceil(size([pgen_file, psam_file, pvar_file], "GB")  * 2) + 20
+
+  String new_pgen = chromosome + ".pgen"
+  String new_pvar = chromosome + ".pvar"
+  String new_psam = chromosome + ".psam"
 
   command {
     plink2 \
@@ -119,18 +128,21 @@ task ExtractVariants{
       --pvar ~{pvar_file} \
       --psam ~{psam_file} \
       --extract ~{variants_extract_file} \
-      --make-pfile \
+      --make-pgen \
       --out ~{outputName}
   }
 
   runtime {
     docker: docker
+    preemptible: 1
+    disks: "local-disk " + disk_size + " HDD"
+    memory: memory_gb + " GiB"
   }
 
   output {
-    File output_pgen_file = "~{outputName}.pgen"
-    File output_pvar_file = "~{outputName}.pvar"
-    File output_psam_file = "~{outputName}.psam"
+    File output_pgen_file = new_pgen
+    File output_pvar_file = new_pvar
+    File output_psam_file = new_psam
   }
 
 }
