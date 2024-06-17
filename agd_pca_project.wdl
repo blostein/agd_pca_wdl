@@ -142,6 +142,8 @@ task ProjectPCA{
 
     Int memory_gb = 20
     Int cpu = 8
+
+    String docker = "hkim298/plink_1.9_2.0:20230116_20230707"
   }
 
   String pca_file = OUTNAME + ".genotype.pca.sscore"
