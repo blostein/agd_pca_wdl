@@ -122,7 +122,7 @@ task ExtractVariants{
   }
 
   runtime {
-    docker: dockerImage
+    docker: docker
   }
 
   output {
