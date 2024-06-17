@@ -64,7 +64,9 @@ workflow VUMCGenotypePCA {
 
   call ProjectPCA{
     input: 
-      pfile_prefix = MergePgenFiles.output_pfile_prefix,
+      pgen_file = MergePgenFiles.output_pgen_file, 
+      pvar_file = MMergePgenFiles.output_pvar_file,
+      psam_file = MergePgenFiles.output_psam_file,  
       PCA_loadings = pca_loadings_file,
       PCA_AF = pca_af_file,
       OUTNAME = target_prefix
@@ -135,7 +137,9 @@ task ExtractVariants{
 
 task ProjectPCA{
   input{
-    String pfile_prefix
+    File pgen_file
+    File pvar_file
+    File psam_file
     File PCA_loadings
     File PCA_AF
     String OUTNAME
@@ -147,16 +151,12 @@ task ProjectPCA{
 
   }
 
-  String pgen_file = pfile_prefix + '.pgen'
-  String pvar_file = pfile_prefix + '.pvar'
-  String psam_file = pfile_prefix + '.psam'
-
   Int disk_size = ceil(size([pgen_file, pvar_file, psam_file], "GB")  * 2) + 20
 
   String pca_file = OUTNAME + ".genotype.pca.sscore"
 
   command {
-    plink2 --pfile ~{pfile_prefix} --score ~{PCA_loadings} \
+    plink2 --pgen ~{pgen_file} --pvar ~{pvar_file} --psam {psam_file} --score ~{PCA_loadings} \
     variance-standardize \
     cols=-scoreavgs,+scoresums \
     list-variants \
