@@ -1,5 +1,5 @@
 version: 1.0
 workflows:
-name: agd_pca_project
   - subclass: WDL
-  - primaryDescriptorPath: /agd_pca_project.wdl
+    primaryDescriptorPath: /agd_pca_project.wdl
+    name: agd_pca_project
