@@ -93,7 +93,7 @@ workflow VUMCGenotypePCA {
   }
 
   output {
-    File output_pca_file = select_first([CopyFile_one.output_file, PlinkPCA.output_pca_file])
+    File output_pca_file = select_first([CopyFile_one.output_file, ProjectPCA.output_pca_file])
   }
 }
 
