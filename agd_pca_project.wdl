@@ -65,8 +65,8 @@ workflow VUMCGenotypePCA {
   call ProjectPCA{
     input: 
       pfile_prefix = MergePgenFiles.output_pfile_prefix,
-      PCA_loadings = pca_loadings_file
-      PCA_AF = pca_af_file
+      PCA_loadings = pca_loadings_file,
+      PCA_AF = pca_af_file,
       OUTNAME = target_prefix
   }
 
@@ -144,7 +144,7 @@ task ProjectPCA{
     Int cpu = 8
   }
 
-  String pca_file = OUT_NAME + ".genotype.pca.sscore"
+  String pca_file = OUTNAME + ".genotype.pca.sscore"
 
   command {
     plink2 --pfile ~{pfile_prefix} --score ~{PCA_loadings} \
