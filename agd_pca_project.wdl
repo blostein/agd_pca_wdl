@@ -147,9 +147,9 @@ task ProjectPCA{
 
   }
 
-  pgen_file = pfile_prefix + '.pgen'
-  pvar_file = pfile_prefix + '.pvar'
-  psam_file = pfile_prefix + '.psam'
+  String pgen_file = pfile_prefix + '.pgen'
+  String pvar_file = pfile_prefix + '.pvar'
+  String psam_file = pfile_prefix + '.psam'
 
   Int disk_size = ceil(size([pgen_file, pvar_file, psam_file], "GB")  * 2) + 20
 
