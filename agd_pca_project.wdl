@@ -156,7 +156,7 @@ task ProjectPCA{
   String pca_file = OUTNAME + ".genotype.pca.sscore"
 
   command {
-    plink2 --pgen ~{pgen_file} --pvar ~{pvar_file} --psam {psam_file} --score ~{PCA_loadings} \
+    plink2 --pgen ~{pgen_file} --pvar ~{pvar_file} --psam ~{psam_file} --score ~{PCA_loadings} \
     variance-standardize \
     cols=-scoreavgs,+scoresums \
     list-variants \
