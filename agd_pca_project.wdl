@@ -71,7 +71,7 @@ workflow VUMCGenotypePCA {
   }
 
   if(defined(target_gcp_folder)){
-    call http_GcpUtils.MoveOrCopyThreeFiles as CopyFile {
+    call http_GcpUtils.MoveOrCopyThreeFiles as CopyFile_three {
       input:
         source_file1 = MergePgenFiles.output_pgen_file,
         source_file2 = MergePgenFiles.output_pvar_file,
@@ -83,7 +83,7 @@ workflow VUMCGenotypePCA {
   }
 
   if(defined(target_gcp_folder)){
-    call http_GcpUtils.MoveOrCopyOneFile as CopyFile {
+    call http_GcpUtils.MoveOrCopyOneFile as CopyFile_one {
       input:
         source_file = ProjectPCA.output_pca_file,
         is_move_file = false,
@@ -93,7 +93,7 @@ workflow VUMCGenotypePCA {
   }
 
   output {
-    File output_pca_file = select_first([CopyFile.output_file, PlinkPCA.output_pca_file])
+    File output_pca_file = select_first([CopyFile_one.output_file, PlinkPCA.output_pca_file])
   }
 }
 
