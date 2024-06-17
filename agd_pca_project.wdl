@@ -71,7 +71,7 @@ workflow VUMCGenotypePCA {
   }
 
   if(defined(target_gcp_folder)){
-    call htttp_GcpUtils.MoveOrCopyThreeFiles as CopyFile {
+    call http_GcpUtils.MoveOrCopyThreeFiles as CopyFile {
       input:
         source_file1 = MergePgenFiles.output_pgen_file,
         source_file2 = MergePgenFiles.output_pvar_file,
