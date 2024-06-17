@@ -1,0 +1,6 @@
+  version: 0.1
+  workflows:
+  name: agd_pca_project
+    subclass: WDL
+    primaryDescriptorPath: /agd_pca_project.wdl
+    testParameterFiles:
