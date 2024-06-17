@@ -115,6 +115,8 @@ task ExtractVariants{
       --pgen ~{pgen_file} \
       --pvar ~{pvar_file} \
       --psam ~{psam_file} \
+      --set-all-var-ids @:#:\$r:\$a \
+      --new-id-max-allele-len 1000 \
       --extract ~{variants_extract_file} \
       --make-pgen \
       --out ~{chromosome}
