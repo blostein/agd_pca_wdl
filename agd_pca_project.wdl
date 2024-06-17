@@ -129,7 +129,7 @@ task ExtractVariants{
       --psam ~{psam_file} \
       --extract ~{variants_extract_file} \
       --make-pgen \
-      --out ~{outputName}
+      --out ~{chromosome}
   }
 
   runtime {
