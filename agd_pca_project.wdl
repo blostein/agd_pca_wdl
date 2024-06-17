@@ -49,7 +49,7 @@ workflow VUMCGenotypePCA {
         pgen_file = pgen_file,
         pvar_file = pvar_file,
         psam_file = ReplaceICAIdWithGrid.output_psam,
-        outputName = chromosome,
+        chromosome = chromosome,
         variants_extract_file = variants_extract_file
     }
   }
