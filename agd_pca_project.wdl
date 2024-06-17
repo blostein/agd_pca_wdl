@@ -68,7 +68,6 @@ workflow VUMCGenotypePCA {
       PCA_loadings = pca_loadings_file
       PCA_AF = pca_af_file
       OUTNAME = target_prefix
-
   }
 
   if(defined(target_gcp_folder)){
