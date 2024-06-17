@@ -144,7 +144,12 @@ task ProjectPCA{
     Int cpu = 8
 
     String docker = "hkim298/plink_1.9_2.0:20230116_20230707"
+
   }
+
+  pgen_file = pfile_prefix + '.pgen'
+  pvar_file = pfile_prefix + '.pvar'
+  psam_file = pfile_prefix + '.psam'
 
   Int disk_size = ceil(size([pgen_file, pvar_file, psam_file], "GB")  * 2) + 20
 
