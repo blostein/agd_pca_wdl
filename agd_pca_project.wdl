@@ -65,7 +65,7 @@ workflow VUMCGenotypePCA {
   call ProjectPCA{
     input: 
       pgen_file = MergePgenFiles.output_pgen_file, 
-      pvar_file = MMergePgenFiles.output_pvar_file,
+      pvar_file = MergePgenFiles.output_pvar_file,
       psam_file = MergePgenFiles.output_psam_file,  
       PCA_loadings = pca_loadings_file,
       PCA_AF = pca_af_file,
