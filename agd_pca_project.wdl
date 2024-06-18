@@ -109,6 +109,9 @@ task ExtractVariants{
   String new_pgen = chromosome + ".pgen"
   String new_pvar = chromosome + ".pvar"
   String new_psam = chromosome + ".psam"
+  String intermediate_pgen = chromosome + "_varids.pgen"
+  String intermediate_pvar = chromosome + "_varids.pvar"
+  String intermediate_psam = chromosome + "_varids.psam"
 
   command {
     plink2 \
@@ -122,9 +125,9 @@ task ExtractVariants{
       --out ~{chromosome}_varids
     
     plink2 \ 
-      --pgen ~{chromosome}_varids \
-      --pvar ~{chromosome}_varids \
-      --psam ~{chromosome}_varids \
+      --pgen ~{intermediate_pgen} \
+      --pvar ~{intermediate_pvar} \
+      --psam ~{intermediate_psam} \
       --extract ~{variants_extract_file} \
       --make-pgen \
       --out ~{chromosome}
