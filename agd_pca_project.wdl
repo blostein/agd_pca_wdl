@@ -83,7 +83,7 @@ workflow VUMCGenotypePCA {
   }
 
     if(defined(target_gcp_folder)){
-    call http_GcpUtils.MoveOrCopyOneFile as CopyFile_one {
+    call http_GcpUtils.MoveOrCopyOneFile as CopyFile_two {
       input:
         source_file = ProjectPCA.output_pca_variants,
         is_move_file = false,
