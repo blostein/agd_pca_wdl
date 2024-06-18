@@ -82,8 +82,19 @@ workflow VUMCGenotypePCA {
     }
   }
 
+    if(defined(target_gcp_folder)){
+    call http_GcpUtils.MoveOrCopyOneFile as CopyFile_one {
+      input:
+        source_file = ProjectPCA.output_pca_variants
+        is_move_file = false,
+        project_id = project_id,
+        target_gcp_folder = select_first([target_gcp_folder])
+    }
+  }
+
   output {
     File output_pca_file = select_first([CopyFile_one.output_file, ProjectPCA.output_pca_file])
+    File output_pca_variants = select_first([CopyFile_one.output_file, ProjectPCA.output_pca_variants])
   }
 }
 
@@ -167,6 +178,7 @@ task ProjectPCA{
   Int disk_size = ceil(size([pgen_file, pvar_file, psam_file], "GB")  * 2) + 20
 
   String pca_file = OUTNAME + ".genotype.pca.sscore"
+  String pca_variants = OUTNAME + "genotype.sscore.vars"
 
   command {
     plink2 --pgen ~{pgen_file} --pvar ~{pvar_file} --psam ~{psam_file} --score ~{PCA_loadings} \
@@ -179,6 +191,7 @@ task ProjectPCA{
     --out ~{OUTNAME}
 
     cp ~{OUTNAME}.sscore ~{pca_file}
+    cp ~{OUTNAME}.sscore.vars ~{pca_variants}
     }
 
   runtime {
@@ -191,6 +204,7 @@ task ProjectPCA{
   
   output {
     File output_pca_file = "~{pca_file}"
+    File output_pca_variants="~{pca_variants}"
   }
 }
 
