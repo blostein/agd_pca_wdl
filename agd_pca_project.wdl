@@ -124,7 +124,7 @@ task ExtractVariants{
       --make-pgen \
       --out ~{chromosome}_varids
     
-    plink2 \ 
+    plink2 \
       --pgen ~{intermediate_pgen} \
       --pvar ~{intermediate_pvar} \
       --psam ~{intermediate_psam} \
