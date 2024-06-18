@@ -85,7 +85,7 @@ workflow VUMCGenotypePCA {
     if(defined(target_gcp_folder)){
     call http_GcpUtils.MoveOrCopyOneFile as CopyFile_one {
       input:
-        source_file = ProjectPCA.output_pca_variants
+        source_file = ProjectPCA.output_pca_variants,
         is_move_file = false,
         project_id = project_id,
         target_gcp_folder = select_first([target_gcp_folder])
