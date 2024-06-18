@@ -119,7 +119,7 @@ task ExtractVariants{
       --pvar ~{pvar_file} \
       --psam ~{psam_file} \
       --snps-only \
-      --set-all-var-ids @:#:\$r:\$a \
+      --set-all-var-ids chr@:#:\$r:\$a \
       --new-id-max-allele-len 1000 \
       --make-pgen \
       --out ~{chromosome}_varids
